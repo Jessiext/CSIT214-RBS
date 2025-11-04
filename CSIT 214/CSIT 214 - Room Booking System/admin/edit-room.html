@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit Room - UOW</title>
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body data-page="edit-room">
+
+  <header class="header">
+    <div class="logo-section">
+      <img src="https://simge-sl.project.manuscript.com.sg/wp-content/uploads/2020/07/SIM-Logo.png" 
+           alt="SIM Global Education" class="logo">
+      <img src="https://www.sim.edu.sg/getmedia/4867eb76-d74f-494a-85e1-bf54942e9665/UOW_Secondary_CMYK_Dark-Blue.png?width=600&height=200&ext=.png" 
+           alt="University of Wollongong" class="logo">
+    </div>
+    <div class="avatar-container">
+      <img id="headerAvatar" class="avatar-img" src="../assets/Staff-Profile.png" alt="avatar">
+      <div class="dropdown-menu">
+        <a href="../logout.html" class="logout-btn">Logout</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <h1 class="page-title" style="font-size: 32px; font-weight: 700;">Edit Room</h1>
+
+    <div class="create-room-container">
+      <form id="editRoomForm" onsubmit="handleEditRoom(event)">
+        <input type="hidden" id="editRoomId">
+        
+        <div class="create-room-layout">
+          
+          <!-- Left Side - Image Upload -->
+          <div class="room-image-section">
+            <div class="image-preview-box" id="editImagePreviewBox">
+              <span class="camera-icon" id="editCameraIcon">📷</span>
+              <img id="editPreviewImage" class="preview-image" style="display: none;">
+            </div>
+            <label for="editRoomImageInput" class="image-upload-label">
+              <h3>Change Image</h3>
+              <p>Or drop image here</p>
+            </label>
+            <input type="file" id="editRoomImageInput" accept="image/*" style="display: none;" onchange="handleEditImagePreview(event)">
+            <input type="hidden" id="editSelectedRoomImage" value="">
+          </div>
+
+          <!-- Right Side - Form Fields -->
+          <div class="room-form-section">
+            <h2 class="form-section-title">Edit Room Details</h2>
+            
+            <div class="create-form-group">
+              <label class="create-form-label">Room Name:</label>
+              <input type="text" id="editRoomName" class="create-form-input" placeholder="Enter a room name..." required>
+            </div>
+
+            <div class="create-form-group">
+              <label class="create-form-label">Date:</label>
+              <div class="date-input-group">
+                <input type="date" id="editDateFrom" class="create-form-input" required>
+                <span class="date-separator">to</span>
+                <input type="date" id="editDateTo" class="create-form-input" required>
+              </div>
+            </div>
+
+            <div class="create-form-group">
+              <label class="create-form-label">Timeslot:</label>
+              <div class="time-input-group">
+                <input type="time" id="editTimeStart" class="create-form-input" required>
+                <span class="time-separator">-</span>
+                <input type="time" id="editTimeEnd" class="create-form-input" required>
+              </div>
+            </div>
+
+            <div class="create-form-group">
+              <label class="create-form-label">Location:</label>
+              <input type="text" id="editLocation" class="create-form-input" placeholder="Enter a location..." required>
+            </div>
+
+            <div class="create-form-group">
+              <label class="create-form-label">Capacity:</label>
+              <input type="number" id="editCapacity" class="create-form-input" placeholder="No. of people..." min="1" required>
+            </div>
+
+            <div class="create-form-group">
+              <label class="create-form-label">Price:</label>
+              <div class="price-input-group">
+                <span class="currency-symbol">$</span>
+                <input type="number" id="editPrice" class="create-form-input" placeholder="Enter an amount..." min="0" step="0.01" required>
+              </div>
+            </div>
+
+            <div class="checkbox-group">
+              <input type="checkbox" id="editIncludePromo" onchange="toggleEditPromoCode()">
+              <label for="editIncludePromo" class="checkbox-label">Include Promo Code (Optional)</label>
+            </div>
+
+            <div class="create-form-group promo-group" id="editPromoCodeGroup" style="display: none;">
+              <label class="create-form-label">Promo Code:</label>
+              <input type="text" id="editPromoCode" class="create-form-input" placeholder="Enter a promo code...">
+            </div>
+          </div>
+        </div>
+
+        <div class="form-submit-section">
+          <button type="button" class="cancel-btn" onclick="window.location.href='dashboard.html'" style="padding: 14px 40px; margin-right: 15px;">Cancel</button>
+          <button type="submit" class="submit-room-btn">Update Room</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="../app.js"></script>
+</body>
+</html>

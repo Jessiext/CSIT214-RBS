@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UOW Room Booking System - Login</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <header class="header">
+    <div class="logo-section">
+      <img src="https://simge-sl.project.manuscript.com.sg/wp-content/uploads/2020/07/SIM-Logo.png" 
+           alt="SIM Global Education" class="logo">
+      <img src="https://www.sim.edu.sg/getmedia/4867eb76-d74f-494a-85e1-bf54942e9665/UOW_Secondary_CMYK_Dark-Blue.png?width=600&height=200&ext=.png" 
+           alt="University of Wollongong" class="logo">
+    </div>
+  </header>
+
+  <div class="login-container">
+    <h2>Login to UOW</h2>
+    <form id="loginForm" onsubmit="handleLogin(event)">
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input id="username" type="text" class="form-input" placeholder="Enter Username" required/>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <div class="password-wrapper">
+          <input id="password" type="password" class="form-input" placeholder="Enter Password" required/>
+          <span class="toggle-password" id="togglePassword" onclick="togglePassword()">👁</span>
+        </div>
+      </div>
+
+      <button type="submit" class="login-btn">Login</button>
+
+      <div class="links">
+        <a href="#">Forgot Username / Password?</a>
+        <a href="#">First Time User? Register Now</a>
+      </div>
+    </form>
+  </div>
+  
+  <footer class="footer">
+    <div class="footer-left">Copyright © 2025 University of Wollongong</div>
+    <div class="footer-right">
+      <a href="#">Terms of Use</a>
+      <a href="#">Privacy & cookies</a>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

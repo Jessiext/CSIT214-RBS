@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Dashboard</title>
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body data-page="student-dashboard">
+
+  <header class="header">
+    <div class="logo-section">
+      <img src="https://simge-sl.project.manuscript.com.sg/wp-content/uploads/2020/07/SIM-Logo.png" 
+           alt="SIM Global Education" class="logo">
+      <img src="https://www.sim.edu.sg/getmedia/4867eb76-d74f-494a-85e1-bf54942e9665/UOW_Secondary_CMYK_Dark-Blue.png?width=600&height=200&ext=.png" 
+           alt="University of Wollongong" class="logo">
+    </div>
+    <div class="avatar-container">
+      <img id="headerAvatar" class="avatar-img" src="../assets/Student-Profile.png" alt="avatar">
+      <div class="dropdown-menu">
+        <a href="dashboard.html" class="mybookings-btn" id="myBookingsLink">My Bookings</a>
+        <a href="../logout.html" class="logout-btn" id="logoutLink">Logout</a>
+      </div>
+    </div>
+  </header>
+
+<div class="container">
+    <h1 class="dashboard-title">Welcome Back, Student 👋</h1>
+    
+    <section class="section-card">
+      <h2 class="section-title">My Bookings</h2>
+      <div id="myBookingsList" class="dashboard-grid"></div>
+    </section>
+
+    <section class="section-card">
+      <h2 class="section-title">Our Room Spaces</h2>
+      
+      <div class="operating-hours">
+        <h3>Operating Hours</h3>
+        <p><strong>Monday - Saturday:</strong> 8:00 AM - 10:00 PM</p>
+        <p>Closed on Sundays and Public Holidays</p>
+      </div>
+
+      <div class="rooms-grid">
+        <div class="room-card">
+          <img src="../assets/study-room.jpg" alt="Study Room" class="venue-image">
+          <div class="room-card-details">
+            <h3 class="room-card-title">Study Room</h3>
+            <p class="room-location">Tay Eng Soon Library, Block A, Level 1</p>
+            
+            <div class="room-specs">
+              <div class="spec-item">
+                <strong>Rooms:</strong> 6 available
+              </div>
+              <div class="spec-item">
+                <strong>Capacity:</strong> Up to 5 pax
+              </div>
+              <div class="spec-item">
+                <strong>Rate:</strong> $10.00 per hour
+              </div>
+            </div>
+
+            <div class="room-features">
+              <p class="features-title"><strong>Features:</strong></p>
+              <ul class="features-list">
+                <li>📺 LED TV (Wireless Screen Mirroring)</li>
+                <li>✏️ Digital Whiteboard</li>
+              </ul>
+            </div>
+
+            <button class="book-btn" onclick="window.location.href='booking.html'">Book Now</button>
+          </div>
+        </div>
+
+        <div class="room-card">
+          <img src="../assets/learning-pod.jpg" alt="Learning Pod" class="venue-image">
+          <div class="room-card-details">
+            <h3 class="room-card-title">Learning Pod</h3>
+            <p class="room-location">Tay Eng Soon Library, Block A, Level 2</p>
+            
+            <div class="room-specs">
+              <div class="spec-item">
+                <strong>Pods:</strong> 3 available
+              </div>
+              <div class="spec-item">
+                <strong>Capacity:</strong> Up to 2 pax
+              </div>
+              <div class="spec-item">
+                <strong>Rate:</strong> $3.00 per hour
+              </div>
+            </div>
+
+            <div class="room-features">
+              <p class="features-title"><strong>Features:</strong></p>
+              <ul class="features-list">
+                <li>🔌 Power Charging Points</li>
+                <li>🔇 Soundproof</li>
+              </ul>
+            </div>
+
+            <button class="book-btn" onclick="window.location.href='booking.html'">Book Now</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script src="../app.js"></script>
+</body>
+</html>

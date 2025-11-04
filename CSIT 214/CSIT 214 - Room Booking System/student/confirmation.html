@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Booking Confirmed - UOW</title>
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body data-page="confirmation">
+
+  <header class="header">
+    <div class="logo-section">
+      <img src="https://simge-sl.project.manuscript.com.sg/wp-content/uploads/2020/07/SIM-Logo.png" 
+           alt="SIM Global Education" class="logo">
+      <img src="https://www.sim.edu.sg/getmedia/4867eb76-d74f-494a-85e1-bf54942e9665/UOW_Secondary_CMYK_Dark-Blue.png?width=600&height=200&ext=.png" 
+           alt="University of Wollongong" class="logo">
+    </div>
+    <div class="avatar-container">
+      <img id="headerAvatar" class="avatar-img" src="../assets/Student-Profile.png" alt="avatar">
+      <div class="dropdown-menu">
+        <a href="dashboard.html" class="mybookings-btn">My Bookings</a>
+        <a href="../logout.html" class="logout-btn" id="logoutLink">Logout</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <!-- Progress Bar - Both Steps Completed -->
+    <div class="progress-bar">
+      <div class="step completed">✓</div>
+      <div class="step-line completed"></div>
+      <div class="step completed">✓</div>
+    </div>
+
+    <!-- Success Message -->
+    <div class="confirmation-header">
+      <h1 class="confirmation-title">Payment Confirmed!</h1>
+      <p class="confirmation-subtitle">Your Booking was Successful!</p>
+      <p class="confirmation-note">A confirmation email will be sent to your SIM email.</p>
+    </div>
+
+    <!-- Booking Details -->
+    <div class="confirmation-layout">
+      <!-- Left Side - Room Image -->
+      <div class="confirmation-room-section">
+        <div class="confirmation-room-card">
+          <img src="../assets/learning-pod.jpg" alt="Learning Pod" class="confirmation-room-image">
+          <h3 class="confirmation-room-name" id="confirmedRoomType">Learning Pod</h3>
+        </div>
+      </div>
+
+      <!-- Right Side - Booking Details -->
+      <div class="confirmation-details-section">
+        <div class="section-card">
+          <h2 class="section-title">Booking Details</h2>
+          
+          <div class="detail-grid">
+            <div class="detail-row">
+              <span class="detail-label">Booking No:</span>
+              <span class="detail-value" id="bookingNumber">6209317</span>
+            </div>
+            
+            <div class="detail-row">
+              <span class="detail-label">Booked on:</span>
+              <span class="detail-value" id="bookedDate">2 November 2025</span>
+            </div>
+            
+            <div class="detail-row">
+              <span class="detail-label">Location:</span>
+              <span class="detail-value" id="roomLocation">Block A, Level 2</span>
+            </div>
+            
+            <div class="detail-row">
+              <span class="detail-label">Room no:</span>
+              <span class="detail-value" id="roomNumber">2</span>
+            </div>
+            
+            <div class="detail-row">
+              <span class="detail-label">No. of Pax:</span>
+              <span class="detail-value" id="numberOfPax">1 Pax</span>
+            </div>
+            
+            <div class="detail-row">
+              <span class="detail-label">Time:</span>
+              <span class="detail-value" id="bookingTime">04:00 p.m. - 05:00 p.m.</span>
+            </div>
+            
+            <div class="detail-row">
+              <span class="detail-label">Date:</span>
+              <span class="detail-value" id="bookingDate">9 November 2025</span>
+            </div>
+          </div>
+
+          <div class="confirmation-actions">
+            <button class="view-booking-btn" onclick="window.location.href='dashboard.html'">View Booking</button>
+            <button class="cancel-booking-btn" onclick="cancelBooking()">Cancel Booking</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="../app.js"></script>
+</body>
+</html>

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Payment - UOW</title>
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body data-page="payment">
+
+  <header class="header">
+    <div class="logo-section">
+      <img src="https://simge-sl.project.manuscript.com.sg/wp-content/uploads/2020/07/SIM-Logo.png" 
+           alt="SIM Global Education" class="logo">
+      <img src="https://www.sim.edu.sg/getmedia/4867eb76-d74f-494a-85e1-bf54942e9665/UOW_Secondary_CMYK_Dark-Blue.png?width=600&height=200&ext=.png" 
+           alt="University of Wollongong" class="logo">
+    </div>
+    <div class="avatar-container">
+      <img id="headerAvatar" class="avatar-img" src="../assets/Student-Profile.png" alt="avatar">
+      <div class="dropdown-menu">
+        <a href="dashboard.html" class="mybookings-btn">My Bookings</a>
+        <a href="../logout.html" class="logout-btn" id="logoutLink">Logout</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <!-- Progress Bar -->
+    <div class="progress-bar">
+      <div class="step completed">✓</div>
+      <div class="step-line completed"></div>
+      <div class="step active">2</div>
+    </div>
+
+    <h1 class="page-title">Payment</h1>
+
+    <div class="payment-layout">
+      <!-- Left Side - Booking Summary -->
+      <div class="booking-summary-section">
+        <div class="booking-summary-card">
+          <img src="../assets/learning-pod.jpg" 
+               alt="Venue" class="summary-venue-image">
+          
+          <div class="booking-info-section">
+            <h3 class="summary-title">Booking Summary</h3>
+            <div class="booking-info-item">
+              <span class="info-label">Venue:</span>
+              <span class="info-value" id="paymentVenueType">Learning Pod</span>
+            </div>
+            <div class="booking-info-item">
+              <span class="info-label">Capacity:</span>
+              <span class="info-value" id="paymentPax">2 Pax</span>
+            </div>
+            <div class="booking-info-item">
+              <span class="info-label">Time:</span>
+              <span class="info-value" id="paymentTime">12:00 p.m. - 2:00 p.m.</span>
+            </div>
+            <div class="booking-info-item">
+              <span class="info-label">Date:</span>
+              <span class="info-value" id="paymentDate">15 October 2025</span>
+            </div>
+          </div>
+
+          <div class="price-breakdown">
+            <div class="price-row">
+              <span class="price-label">Room fee</span>
+              <span class="price-value" id="paymentRoomFee">$6.00</span>
+            </div>
+            <div class="price-row">
+              <span class="price-label">Booking fee</span>
+              <span class="price-value" id="paymentBookingFee">$0.50</span>
+            </div>
+            <div class="price-row discount-row" id="discountRow" style="display: none;">
+              <span class="price-label">Discount</span>
+              <span class="price-value discount" id="discountAmount">-$0.00</span>
+            </div>
+          </div>
+
+          <div class="total-section">
+            <span class="total-label">Total:</span>
+            <span class="total-amount" id="paymentTotal">$6.50</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="payment-form-section">
+  <div class="section-card">
+    <h2 class="section-title">Payment Details</h2>
+
+    <!-- Promo Code Section -->
+    <div class="promo-code-section">
+      <div class="promo-input-group">
+        <input type="text" id="promoCode" class="form-input promo-input" placeholder="Enter promo code">
+        <button type="button" class="apply-promo-btn" onclick="applyPromoCode()">Apply</button>
+      </div>
+      <p class="promo-message" id="promoMessage"></p>
+    </div>
+
+    <!-- Payment Methods - Clickable -->
+        <div class="payment-methods">
+        <label class="payment-methods-label">Payment methods</label>
+        <div class="payment-options">
+            <div class="payment-option" onclick="selectPaymentMethod('mastercard')">
+            <input type="radio" name="paymentMethod" id="mastercard" value="mastercard" checked>
+            <label for="mastercard" class="payment-option-label">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" 
+                    alt="Mastercard" class="payment-option-icon">
+                <span>Mastercard</span>
+            </label>
+            </div>
+            
+            <div class="payment-option" onclick="selectPaymentMethod('visa')">
+            <input type="radio" name="paymentMethod" id="visa" value="visa">
+            <label for="visa" class="payment-option-label">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg" 
+                    alt="Visa" class="payment-option-icon">
+                <span>Visa</span>
+            </label>
+            </div>
+            
+            <div class="payment-option" onclick="selectPaymentMethod('applepay')">
+            <input type="radio" name="paymentMethod" id="applepay" value="applepay">
+            <label for="applepay" class="payment-option-label">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTWxYUQvdwKXZ9meVu4Jx6fr7nNNo99TLl-bA&s" 
+                    alt="Apple Pay" class="payment-option-icon">
+                <span>Apple Pay</span>
+            </label>
+            </div>
+        </div>
+        </div>
+
+        <!-- Payment Form -->
+        <form id="paymentForm" onsubmit="processPayment(event)">
+        <div class="form-group">
+            <label class="form-label">Cardholder name *</label>
+            <input type="text" id="cardholderName" class="form-input" placeholder="e.g John Doe" required>
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">Card number *</label>
+            <input type="text" id="cardNumber" class="form-input" placeholder="1234 1234 1234 1234" maxlength="19" required>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group">
+            <label class="form-label">Expiry Date *</label>
+            <input type="text" id="expiryDate" class="form-input" placeholder="MM / YY" maxlength="7" required>
+            </div>
+            <div class="form-group">
+            <label class="form-label">CVV *</label>
+            <input type="text" id="cvv" class="form-input" placeholder="123" maxlength="3" required>
+            </div>
+        </div>
+
+        <div class="form-actions">
+            <button type="button" class="cancel-btn" onclick="window.location.href='booking.html'">Back</button>
+            <button type="submit" class="book-btn">Confirm Payment</button>
+          </div>
+        </form>
+    </div>
+    </div> 
+
+  <script src="../app.js"></script>
+</body>
+</html>

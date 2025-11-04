@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book a Room - UOW</title>
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body data-page="booking">
+
+  <header class="header">
+    <div class="logo-section">
+      <img src="https://simge-sl.project.manuscript.com.sg/wp-content/uploads/2020/07/SIM-Logo.png" 
+           alt="SIM Global Education" class="logo">
+      <img src="https://www.sim.edu.sg/getmedia/4867eb76-d74f-494a-85e1-bf54942e9665/UOW_Secondary_CMYK_Dark-Blue.png?width=600&height=200&ext=.png" 
+           alt="University of Wollongong" class="logo">
+    </div>
+    <div class="avatar-container">
+      <img id="headerAvatar" class="avatar-img" src="../assets/Student-Profile.png" alt="avatar">
+      <div class="dropdown-menu">
+        <a href="dashboard.html" class="mybookings-btn">My Bookings</a>
+        <a href="../index.html" class="logout-btn" id="logoutLink">Logout</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="progress-bar">
+        <div class="step active">1</div>
+     <div class="step-line"></div>
+         <div class="step">2</div>
+    </div>
+
+    <h1 class="page-title">Book Your Room</h1>
+
+    <div class="booking-layout">
+      <div class="room-preview-section">
+        <div class="room-preview-card">
+          <img id="roomPreviewImage" src="../assets/study-room.jpg" alt="Room Preview" class="room-preview-image">
+          <div class="room-preview-details">
+            <h3 id="roomPreviewTitle" class="room-preview-title">Study Room</h3>
+            <p id="roomPreviewLocation" class="room-preview-info">Location: Block A, Level 1</p>
+            <p id="roomPreviewCapacity" class="room-preview-info">Capacity: Up to 5 people</p>
+            <p id="roomPreviewFee" class="room-preview-info">Fee: $10 per session + $0.50 booking fee</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="booking-form-section">
+        <div class="section-card">
+          <h2 class="section-title">Booking Details</h2>
+          <form id="bookingForm" onsubmit="submitBooking(event)">
+            
+            <div class="form-group">
+              <label class="form-label">Type of Room *</label>
+              <select id="bookingRoomType" class="form-input" onchange="updateRoomNumbers(); updateRoomPreview()" required>
+                <option value="">Select room type</option>
+                <option value="Study Room">Study Room</option>
+                <option value="Learning Pod">Learning Pod</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Room Number *</label>
+              <select id="bookingRoomNumber" class="form-input" required>
+                <option value="">Select room number</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">No. of Pax *</label>
+              <select id="bookingPax" class="form-input" required>
+                <option value="">Select number of people</option>
+                <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Date *</label>
+              <input type="date" id="bookingDate" class="form-input" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Time Slot *</label>
+              <select id="bookingTime" class="form-input" required>
+                <option value="">Select time slot</option>
+                <option value="08:00 a.m. - 09:00 a.m.">08:00 a.m. - 09:00 a.m.</option>
+                <option value="09:00 a.m. - 10:00 a.m.">09:00 a.m. - 10:00 a.m.</option>
+                <option value="10:00 a.m. - 11:00 a.m.">10:00 a.m. - 11:00 a.m.</option>
+                <option value="11:00 a.m. - 12:00 p.m.">11:00 a.m. - 12:00 p.m.</option>
+                <option value="12:00 p.m. - 01:00 p.m.">12:00 p.m. - 01:00 p.m.</option>
+                <option value="01:00 p.m. - 02:00 p.m.">01:00 p.m. - 02:00 p.m.</option>
+                <option value="02:00 p.m. - 03:00 p.m.">02:00 p.m. - 03:00 p.m.</option>
+                <option value="03:00 p.m. - 04:00 p.m.">03:00 p.m. - 04:00 p.m.</option>
+                <option value="04:00 p.m. - 05:00 p.m.">04:00 p.m. - 05:00 p.m.</option>
+                <option value="05:00 p.m. - 06:00 p.m.">05:00 p.m. - 06:00 p.m.</option>
+                <option value="06:00 p.m. - 07:00 p.m.">06:00 p.m. - 07:00 p.m.</option>
+                <option value="07:00 p.m. - 08:00 p.m.">07:00 p.m. - 08:00 p.m.</option>
+                <option value="08:00 p.m. - 09:00 p.m.">08:00 p.m. - 09:00 p.m.</option>
+                <option value="09:00 p.m. - 10:00 p.m.">09:00 p.m. - 10:00 p.m.</option>
+              </select>
+            </div>
+
+            <div class="form-actions">
+              <button type="button" class="cancel-btn" onclick="window.location.href='dashboard.html'">Cancel</button>
+              <button type="submit" class="book-btn">Proceed to Payment</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="../app.js"></script>
+</body>
+</html>

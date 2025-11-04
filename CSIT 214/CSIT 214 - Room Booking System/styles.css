@@ -1,0 +1,1859 @@
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #f5f7fa;
+}
+
+/* ========================================
+   LOGIN PAGE STYLES
+======================================== */
+
+/* Login Page ONLY - applies when there's NO data-page attribute */
+body:not([data-page]) {
+  height: 100vh;
+  background: url('assets/login.png') no-repeat center center;
+  background-size: cover;
+}
+
+/* Login Container */
+.login-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(255, 255, 255, 0.95);
+  padding: 40px;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  width: 90%;
+  max-width: 400px;
+}
+
+.login-container h2 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 30px;
+  font-size: 24px;
+  font-weight: 400;
+}
+
+/* Form Styles */
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  color: #333;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.form-input {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  transition: border-color 0.3s;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #0066cc;
+}
+
+/* Password Toggle */
+.password-wrapper {
+  position: relative;
+}
+
+.password-wrapper .form-input {
+  padding-right: 45px;
+}
+
+.toggle-password {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  user-select: none;
+  font-size: 18px;
+}
+
+/* Login Button */
+.login-btn {
+  width: 100%;
+  padding: 12px;
+  background-color: #0066cc;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-bottom: 20px;
+}
+
+.login-btn:hover {
+  background-color: #0052a3;
+}
+
+/* Links */
+.links {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.links a {
+  color: #0066cc;
+  text-decoration: none;
+  font-size: 14px;
+  transition: color 0.3s;
+}
+
+.links a:hover {
+  color: #0052a3;
+  text-decoration: underline;
+}
+
+/* ========================================
+   LOGOUT PAGE STYLES
+======================================== */
+
+body[data-page="logout"] {
+  background: url('assets/logout.png') no-repeat center center;
+  background-size: cover;
+}
+
+.logout-content {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+}
+
+.logout-card {
+  background-color: rgba(255, 255, 255, 0.95);
+  padding: 50px 40px;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  max-width: 500px;
+  width: 100%;
+  text-align: center;
+}
+
+.success-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background-color: #d4edda;
+  color: #155724;
+  padding: 12px 24px;
+  border-radius: 50px;
+  margin-bottom: 30px;
+  font-weight: 500;
+}
+
+.success-icon {
+  width: 28px;
+  height: 28px;
+  background-color: #28a745;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.card-title {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+.card-message {
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 30px;
+  line-height: 1.6;
+}
+
+.login-again-btn {
+  width: 100%;
+  padding: 14px;
+  background-color: #0066cc;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.login-again-btn:hover {
+  background-color: #0052a3;
+}
+
+/* ========================================
+   SHARED COMPONENTS
+======================================== */
+
+/* Header */
+.header {
+  background-color: white;
+  padding: 15px 30px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo-section {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.logo {
+  height: 50px;
+  width: auto;
+}
+
+/* Avatar Dropdown */
+.avatar-container {
+  position: relative;
+  cursor: pointer;
+}
+
+.avatar-img {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #0066cc;
+  transition: transform 0.2s;
+}
+
+.avatar-img:hover {
+  transform: scale(1.05);
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 55px;
+  right: 0;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  min-width: 180px;
+  overflow: hidden;
+  z-index: 1000;
+}
+
+.avatar-container:hover .dropdown-menu {
+  display: block;
+}
+
+.dropdown-menu a {
+  display: block;
+  padding: 12px 20px;
+  color: #333;
+  text-decoration: none;
+  font-size: 14px;
+  transition: background-color 0.2s;
+}
+
+.dropdown-menu a:hover {
+  background-color: #f5f7fa;
+}
+
+.logout-btn {
+  color: #dc3545 !important;
+  border-top: 1px solid #f0f0f0;
+}
+
+/* Footer - Only shows on login/logout pages */
+.footer {
+  display: none;
+}
+
+body:not([data-page]) .footer,
+body[data-page="logout"] .footer {
+  display: flex;
+  background: transparent;
+  color: white;
+  text-shadow: 0 0 3px rgba(0,0,0,0.4);
+  position: relative;
+  z-index: 2;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  font-size: 11px;
+  margin-top: auto;
+}
+
+.footer-right {
+  display: flex;
+  gap: 20px;
+}
+
+.footer a {
+  color: white;
+  text-decoration: none;
+  transition: opacity 0.3s;
+}
+
+.footer a:hover {
+  opacity: 0.8;
+  text-decoration: underline;
+}
+
+/* ========================================
+   DASHBOARD STYLES
+======================================== */
+
+/* Dashboard Container */
+.container {
+  flex: 1;
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 40px 30px;
+}
+
+/* Booking Page - Reduce top padding */
+body[data-page="booking"] .container {
+  padding: 20px 30px 40px;
+}
+
+.page-title {
+  text-align: center;
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 30px;
+  color: #333;
+}
+
+/* Section Card */
+.section-card {
+  background-color: white;
+  border-radius: 12px;
+  padding: 30px;
+  margin-bottom: 30px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.section-title {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 20px;
+  font-weight: 600;
+  border-bottom: 2px solid #0066cc;
+  padding-bottom: 10px;
+}
+
+/* Dashboard Grid for Bookings */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  min-height: 100px;
+}
+
+.dashboard-title {
+  font-size: 32px;
+  color: #333;
+  margin-bottom: 30px;
+  font-weight: 600;
+}
+
+.booking-card {
+  background-color: white;
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s, box-shadow 0.3s;
+  border: 1px solid #e0e0e0;
+}
+
+.booking-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+.booking-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 2px solid #f0f0f0;
+}
+
+.booking-title {
+  font-size: 22px;
+  color: #333;
+  font-weight: 600;
+  margin: 0;
+}
+
+.booking-status {
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.booking-status.active {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.booking-status.cancelled {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+.booking-info {
+  display: grid;
+  gap: 12px 30px;
+  margin-bottom: 20px;
+}
+
+.booking-info p {
+  font-size: 14px;
+  color: #666;
+  margin: 0;
+  line-height: 1.6;
+}
+
+.booking-info strong {
+  color: #333;
+  font-weight: 600;
+  display: inline-block;
+  min-width: 100px;
+}
+
+.booking-actions {
+  display: flex;
+  gap: 12px;
+  padding-top: 15px;
+  border-top: 1px solid #f0f0f0;
+}
+
+.cancel-booking-btn-small {
+  flex: 1;
+  padding: 12px 20px;
+  background-color: white;
+  color: #dc3545;
+  border: 2px solid #dc3545;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.cancel-booking-btn-small:hover {
+  background-color: #dc3545;
+  color: white;
+  transform: translateY(-1px);
+}
+
+.dashboard-grid:empty::after {
+  content: 'No bookings yet. Book a room to get started!';
+  grid-column: 1 / -1;
+  text-align: center;
+  color: #999;
+  padding: 40px;
+  font-size: 16px;
+}
+
+/* Operating Hours */
+.operating-hours {
+  background-color: #f8f9fa;
+  border-left: 4px solid #0066cc;
+  padding: 20px;
+  margin-bottom: 30px;
+  border-radius: 8px;
+}
+
+.operating-hours h3 {
+  color: #333;
+  font-size: 18px;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+
+.operating-hours p {
+  color: #666;
+  font-size: 14px;
+  line-height: 1.8;
+  margin-bottom: 5px;
+}
+
+/* ========================================
+   ROOM DISPLAY STYLES
+======================================== */
+
+/* Room Item (List View) */
+.room-item {
+  display: grid;
+  grid-template-columns: 200px 1fr auto;
+  gap: 30px;
+  align-items: center;
+  padding: 20px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.room-item:last-child {
+  border-bottom: none;
+}
+
+.room-image {
+  width: 200px;
+  height: 150px;
+  border-radius: 10px;
+  object-fit: cover;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.room-details {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.room-name {
+  font-size: 20px;
+  color: #333;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.room-info {
+  font-size: 14px;
+  color: #666;
+  line-height: 1.6;
+}
+
+.room-actions {
+  display: flex;
+  align-items: center;
+}
+
+/* Room Card (Grid View) */
+.rooms-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 25px;
+  margin-top: 20px;
+}
+
+.room-card {
+  background-color: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.room-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.venue-image {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+}
+
+.room-card-details {
+  padding: 25px;
+}
+
+.room-card-title {
+  font-size: 22px;
+  color: #333;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.room-location {
+  color: #666;
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+/* Room Specs */
+.room-specs {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.spec-item {
+  color: #555;
+  font-size: 14px;
+}
+
+.spec-item strong {
+  color: #333;
+}
+
+/* Room Features */
+.room-features {
+  margin-bottom: 20px;
+}
+
+.features-title {
+  color: #333;
+  font-size: 15px;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.features-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.features-list li {
+  color: #666;
+  font-size: 14px;
+  padding: 6px 0;
+  line-height: 1.6;
+}
+
+/* Book Button */
+.book-btn {
+  padding: 12px 30px;
+  background-color: #0066cc;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 2px 4px rgba(0, 102, 204, 0.2);
+}
+
+.book-btn:hover {
+  background-color: #0052a3;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 102, 204, 0.3);
+}
+
+.room-card .book-btn {
+  width: 100%;
+  margin-top: 10px;
+}
+
+/* ========================================
+   BOOKING PAGE STYLES
+======================================== */
+
+/* Progress Bar */
+.progress-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin: 20px 0 30px;
+}
+
+.step {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #e0e0e0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  color: #666;
+  font-size: 16px;
+}
+
+.step.completed {
+  background-color: #90EE90;
+  color: white;
+}
+
+.step.active {
+  background-color: white;
+  border: 2px solid #90EE90;
+  color: #333;
+}
+
+.step-line {
+  width: 60px;
+  height: 2px;
+  background-color: #e0e0e0;
+}
+
+.step-line.completed {
+  background-color: #90EE90;
+}
+
+/* Booking Layout */
+.booking-layout {
+  display: grid;
+  grid-template-columns: 380px 1fr;
+  gap: 25px;
+  align-items: start;
+}
+
+/* Room Preview Section */
+.room-preview-section {
+  position: sticky;
+  top: 20px;
+}
+
+.room-preview-card {
+  background-color: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.room-preview-image {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+}
+
+.room-preview-details {
+  padding: 20px;
+}
+
+.room-preview-title {
+  font-size: 20px;
+  color: #333;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.room-preview-info {
+  font-size: 14px;
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 6px;
+}
+
+/* Booking Form Section */
+.booking-form-section {
+  width: 100%;
+}
+
+.booking-form-section .section-card {
+  margin-bottom: 0;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 8px;
+  color: #333;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.form-actions {
+  display: flex;
+  gap: 15px;
+  margin-top: 25px;
+  padding-top: 20px;
+  border-top: 1px solid #f0f0f0;
+}
+
+.cancel-btn {
+  flex: 1;
+  padding: 12px 30px;
+  background-color: #f5f7fa;
+  color: #666;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.cancel-btn:hover {
+  background-color: #e8eaf0;
+  border-color: #ccc;
+}
+
+.form-actions .book-btn {
+  flex: 2;
+  padding: 12px 30px;
+}
+
+/* ========================================
+   PAYMENT PAGE STYLES
+======================================== */
+
+body[data-page="payment"] .container {
+  padding: 20px 30px 40px;
+}
+
+/* Payment Layout */
+.payment-layout {
+  display: grid;
+  grid-template-columns: 400px 1fr;
+  gap: 25px;
+  align-items: start;
+}
+
+/* Booking Summary Section */
+.booking-summary-section {
+  position: sticky;
+  top: 20px;
+}
+
+.booking-summary-card {
+  background-color: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.summary-venue-image {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+}
+
+.booking-info-section {
+  padding: 20px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.summary-title {
+  font-size: 18px;
+  color: #333;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+.booking-info-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  font-size: 14px;
+}
+
+.info-label {
+  color: #666;
+  font-weight: 500;
+}
+
+.info-value {
+  color: #333;
+  font-weight: 600;
+  text-align: right;
+}
+
+/* Price Breakdown */
+.price-breakdown {
+  padding: 20px;
+  border-bottom: 2px solid #f0f0f0;
+}
+
+.price-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  font-size: 14px;
+}
+
+.price-label {
+  color: #666;
+}
+
+.price-value {
+  color: #333;
+  font-weight: 500;
+}
+
+.discount-row .price-value {
+  color: #28a745;
+}
+
+/* Total Section */
+.total-section {
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f8f9fa;
+}
+
+.total-label {
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+}
+
+.total-amount {
+  font-size: 24px;
+  font-weight: 700;
+  color: #0066cc;
+}
+
+/* Payment Form Section */
+.payment-form-section {
+  width: 100%;
+}
+
+.payment-form-section .section-card {
+  margin-bottom: 0;
+}
+
+/* Promo Code Section */
+.promo-code-section {
+  margin-bottom: 25px;
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+}
+
+.promo-input-group {
+  display: flex;
+  gap: 10px;
+}
+
+.promo-input {
+  flex: 1;
+  text-transform: uppercase;
+}
+
+.apply-promo-btn {
+  padding: 12px 24px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  white-space: nowrap;
+}
+
+.apply-promo-btn:hover {
+  background-color: #218838;
+}
+
+.promo-message {
+  margin-top: 10px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.promo-message.success {
+  color: #28a745;
+}
+
+.promo-message.error {
+  color: #dc3545;
+}
+
+/* Payment Methods */
+.payment-methods {
+  margin-bottom: 25px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.payment-methods-label {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 12px;
+}
+
+.payment-options {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.payment-option {
+  position: relative;
+  cursor: pointer;
+}
+
+.payment-option input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.payment-option-label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 20px 15px;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  background-color: white;
+  transition: all 0.3s;
+  cursor: pointer;
+  height: 100%;
+}
+
+.payment-option-label:hover {
+  border-color: #0066cc;
+  background-color: #f8f9fa;
+}
+
+.payment-option input[type="radio"]:checked + .payment-option-label {
+  border-color: #0066cc;
+  background-color: #e3f2fd;
+  box-shadow: 0 2px 8px rgba(0, 102, 204, 0.2);
+}
+
+.payment-option-icon {
+  height: 28px;
+  width: auto;
+  object-fit: contain;
+}
+
+.payment-option-label span {
+  font-size: 13px;
+  font-weight: 500;
+  color: #333;
+}
+
+.payment-option input[type="radio"]:checked + .payment-option-label span {
+  color: #0066cc;
+  font-weight: 600;
+}
+
+/* Form Row for Side-by-Side Inputs */
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+/* ========================================
+   CONFIRMATION PAGE STYLES
+======================================== */
+
+body[data-page="confirmation"] {
+  background-color: #f5f7fa;
+}
+
+body[data-page="confirmation"] .container {
+  padding: 20px 30px 40px;
+}
+
+/* Completed Progress Bar */
+body[data-page="confirmation"] .step.completed {
+  background-color: #90EE90;
+  color: white;
+}
+
+/* Confirmation Header */
+.confirmation-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.success-checkmark {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 20px;
+  background-color: #90EE90;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 48px;
+  color: white;
+  font-weight: bold;
+  box-shadow: 0 4px 12px rgba(144, 238, 144, 0.3);
+}
+
+.confirmation-title {
+  font-size: 32px;
+  color: #333;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.confirmation-subtitle {
+  font-size: 20px;
+  color: #666;
+  margin-bottom: 10px;
+}
+
+.confirmation-note {
+  font-size: 14px;
+  color: #999;
+}
+
+/* Confirmation Layout */
+.confirmation-layout {
+  display: grid;
+  grid-template-columns: 380px 1fr;
+  gap: 25px;
+  align-items: start;
+}
+
+/* Room Section */
+.confirmation-room-section {
+  position: sticky;
+  top: 20px;
+}
+
+.confirmation-room-card {
+  background-color: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  text-align: center;
+}
+
+.confirmation-room-image {
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+}
+
+.confirmation-room-name {
+  padding: 20px;
+  font-size: 22px;
+  color: #333;
+  font-weight: 600;
+}
+
+/* Details Section */
+.confirmation-details-section {
+  width: 100%;
+}
+
+.confirmation-details-section .section-card {
+  margin-bottom: 0;
+}
+
+.detail-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.detail-row {
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  padding: 16px 0;
+  border-bottom: 1px solid #f0f0f0;
+  align-items: center;
+}
+
+.detail-row:last-child {
+  border-bottom: none;
+}
+
+.detail-label {
+  font-size: 14px;
+  color: #666;
+  font-weight: 500;
+}
+
+.detail-value {
+  font-size: 14px;
+  color: #333;
+  font-weight: 600;
+  text-align: right;
+}
+
+/* Confirmation Actions */
+.confirmation-actions {
+  display: flex;
+  gap: 15px;
+  margin-top: 30px;
+  padding-top: 25px;
+  border-top: 2px solid #f0f0f0;
+}
+
+.view-booking-btn {
+  flex: 1;
+  padding: 14px 30px;
+  background-color: #0066cc;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 2px 4px rgba(0, 102, 204, 0.2);
+}
+
+.view-booking-btn:hover {
+  background-color: #0052a3;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 102, 204, 0.3);
+}
+
+.cancel-booking-btn {
+  flex: 1;
+  padding: 14px 30px;
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 2px 4px rgba(220, 53, 69, 0.2);
+}
+
+.cancel-booking-btn:hover {
+  background-color: #c82333;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(220, 53, 69, 0.3);
+}
+
+/* Admin Dashboard*/
+.adashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  min-height: 100px;
+}
+
+.adashboard-grid:empty::after {
+  content: 'No Rooms Yet. Create a room!';
+  grid-column: 1 / -1;
+  text-align: center;
+  color: #999;
+  padding: 40px;
+  font-size: 16px;
+}
+
+.add-room-btn {
+    background: #1a73e8;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 25px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+/* ========================================
+   STAFF DASHBOARD STYLES
+======================================== */
+
+/* Staff Notification */
+.staff-notification {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  min-width: 260px;
+  background: #4caf50;
+  color: white;
+  padding: 16px 24px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  font-weight: 600;
+  font-size: 15px;
+  z-index: 1000;
+  opacity: 0;
+  transform: translateX(400px);
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  cursor: pointer;
+}
+
+.staff-notification.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.staff-notification.hiding {
+  opacity: 0;
+  transform: translateX(400px);
+}
+
+.staff-notification.success {
+  background-color: #4caf50;
+}
+
+.staff-notification.info {
+  background-color: #2196f3;
+}
+
+.staff-notification.warning {
+  background-color: #ff9800;
+}
+
+.staff-notification.error {
+  background-color: #f44336;
+}
+
+body[data-page="staff-dashboard"] {
+  background-color: #f5f7fa;
+}
+
+body[data-page="staff-dashboard"] .container {
+  max-width: 900px;
+}
+
+body[data-page="staff-dashboard"] .page-title {
+  text-align: center;
+  font-size: 32px;
+  margin-bottom: 40px;
+}
+
+/* Staff Section Header */
+.staff-section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.staff-section-header .section-title {
+  margin-bottom: 0;
+  border-bottom: none;
+  padding-bottom: 0;
+  font-size: 22px;
+}
+
+.add-room-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 24px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.add-room-btn:hover {
+  background-color: #0056b3;
+}
+
+.btn-icon {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* Staff Rooms List */
+.staff-rooms-list {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.staff-room-item {
+  display: grid;
+  grid-template-columns: 180px 1fr 140px;
+  gap: 20px;
+  align-items: center;
+  padding-bottom: 30px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.staff-room-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.staff-room-image {
+  width: 180px;
+  height: 140px;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+.staff-room-details {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.staff-room-name {
+  font-size: 20px;
+  color: #333;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.staff-room-info {
+  font-size: 14px;
+  color: #666;
+  line-height: 1.5;
+}
+
+/* Staff Room Actions */
+.staff-room-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: stretch;
+}
+
+.staff-action-buttons {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+.staff-icon-btn {
+  width: 38px;
+  height: 38px;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.2s;
+  background-color: #e9ecef;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.staff-icon-btn:hover {
+  background-color: #dee2e6;
+  transform: scale(1.05);
+}
+
+.edit-btn {
+  background-color: #fff4e6;
+}
+
+.edit-btn:hover {
+  background-color: #ffe0b2;
+}
+
+.delete-btn {
+  background-color: #ffe6e6;
+}
+
+.delete-btn:hover {
+  background-color: #ffcccc;
+}
+
+.launch-btn,
+.unlaunch-btn {
+  padding: 10px 20px;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s;
+  width: 100%;
+  text-align: center;
+}
+
+.launch-btn {
+  background-color: #007bff;
+}
+
+.launch-btn:hover {
+  background-color: #0056b3;
+}
+
+.unlaunch-btn {
+  background-color: #007bff;
+}
+
+.unlaunch-btn:hover {
+  background-color: #0056b3;
+}
+
+.room-status {
+  display: none;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 2000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  animation: fadeIn 0.3s;
+}
+
+.modal.show {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-content {
+  background-color: white;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 600px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  animation: slideDown 0.3s;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 25px 30px;
+  border-bottom: 2px solid #f0f0f0;
+}
+
+.modal-header h2 {
+  font-size: 24px;
+  color: #333;
+  font-weight: 600;
+  margin: 0;
+}
+
+.modal-close {
+  background: none;
+  border: none;
+  font-size: 32px;
+  color: #999;
+  cursor: pointer;
+  line-height: 1;
+  padding: 0;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.3s;
+}
+
+.modal-close:hover {
+  color: #333;
+}
+
+#roomForm {
+  padding: 30px;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 15px;
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid #f0f0f0;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* ========================================
+   CREATE ROOM PAGE STYLES
+======================================== */
+
+body[data-page="create-room"] {
+  background-color: #f5f7fa;
+}
+
+body[data-page="create-room"] .container {
+  max-width: 1100px;
+}
+
+.create-room-container {
+  background-color: white;
+  border-radius: 12px;
+  padding: 40px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.create-room-layout {
+  display: grid;
+  grid-template-columns: 350px 1fr;
+  gap: 40px;
+  margin-bottom: 30px;
+}
+
+/* Image Section */
+.room-image-section {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.image-preview-box {
+  width: 100%;
+  height: 280px;
+  background-color: #f8f9fa;
+  border: 2px dashed #dee2e6;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.camera-icon {
+  font-size: 80px;
+}
+
+.preview-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.image-upload-label {
+  background-color: #f8f9fa;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.image-upload-label:hover {
+  background-color: #e9ecef;
+  border-color: #0066cc;
+}
+
+.image-upload-label h3 {
+  font-size: 16px;
+  color: #333;
+  margin-bottom: 5px;
+  font-weight: 600;
+}
+
+.image-upload-label p {
+  font-size: 14px;
+  color: #666;
+  margin: 0;
+}
+
+/* Form Section */
+.room-form-section {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-section-title {
+  font-size: 24px;
+  color: #333;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.create-form-group {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+}
+
+.create-form-label {
+  min-width: 120px;
+  font-size: 15px;
+  color: #333;
+  font-weight: 600;
+  padding-top: 12px;
+}
+
+.create-form-input {
+  flex: 1;
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 14px;
+  transition: border-color 0.3s;
+}
+
+.create-form-input:focus {
+  outline: none;
+  border-color: #0066cc;
+}
+
+/* Date Input Group */
+.date-input-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+}
+
+.date-separator {
+  font-size: 14px;
+  color: #666;
+  font-weight: 500;
+}
+
+/* Time Input Group */
+.time-input-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+}
+
+.time-separator {
+  font-size: 18px;
+  color: #666;
+  font-weight: 500;
+}
+
+/* Price Input Group */
+.price-input-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+}
+
+.currency-symbol {
+  font-size: 20px;
+  font-weight: 600;
+  color: #333;
+}
+
+/* Checkbox Group */
+.checkbox-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: 135px;
+}
+
+.checkbox-group input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+
+.checkbox-label {
+  font-size: 14px;
+  color: #333;
+  cursor: pointer;
+  user-select: none;
+}
+
+.promo-group {
+  margin-top: -10px;
+}
+
+/* Submit Section */
+.form-submit-section {
+  padding-top: 30px;
+  border-top: 2px solid #f0f0f0;
+  display: flex;
+  justify-content: center;
+}
+
+.submit-room-btn {
+  padding: 14px 60px;
+  background-color: #0066cc;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 2px 8px rgba(0, 102, 204, 0.3);
+}
+
+.submit-room-btn:hover {
+  background-color: #0052a3;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 102, 204, 0.4);
+}
+
+body[data-page="edit-room"] {
+  background-color: #f5f7fa;
+}
+
+body[data-page="edit-room"] .container {
+  max-width: 1100px;
+}
+
+/* Reuse create-room styles */
+body[data-page="edit-room"] .create-room-container,
+body[data-page="edit-room"] .create-room-layout,
+body[data-page="edit-room"] .room-image-section,
+body[data-page="edit-room"] .image-preview-box,
+body[data-page="edit-room"] .image-upload-label,
+body[data-page="edit-room"] .room-form-section,
+body[data-page="edit-room"] .create-form-group,
+body[data-page="edit-room"] .create-form-label,
+body[data-page="edit-room"] .create-form-input,
+body[data-page="edit-room"] .time-input-group,
+body[data-page="edit-room"] .date-input-group,
+body[data-page="edit-room"] .price-input-group,
+body[data-page="edit-room"] .checkbox-group,
+body[data-page="edit-room"] .form-submit-section {
+  /* Inherits all styles from create-room page */
+}
